@@ -17,7 +17,8 @@ if (USE_MYMATH)
     # add the MathFunctions library
     add_subdirectory(MathFunctions)
     list(APPEND EXTRA_LIBS MathFunctions)
-    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
+    # add the target_include_directories in MathFunctions CMakeLists.txt, so no need writing the follow
+    # list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
 endif()
 
 # add the executable
@@ -26,5 +27,5 @@ add_executable(Tutorial tutorial.cxx)
 target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS})
 target_include_directories(Tutorial PUBLIC
         "${PROJECT_BINARY_DIR}"
-        "${EXTRA_INCLUDES}"
         )
+# "${EXTRA_INCLUDES}"
