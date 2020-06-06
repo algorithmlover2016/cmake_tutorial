@@ -1,6 +1,9 @@
+
 # generate the MathFunctions library
 add_library(MathFunctions MathFunctions.cxx)
 
+set_property(TARGET MathFunctions PROPERTY VERSION "1.0.0")
+set_property(TARGET MathFunctions PROPERTY SOVERSION "1")
 
 #interface to remove the EXTRA_INCLUDES in top-level CMakeLists.txt 
 target_include_directories(MathFunctions
