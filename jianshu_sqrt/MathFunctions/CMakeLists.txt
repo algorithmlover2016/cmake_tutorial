@@ -7,7 +7,9 @@ set_property(TARGET MathFunctions PROPERTY SOVERSION "1")
 
 #interface to remove the EXTRA_INCLUDES in top-level CMakeLists.txt 
 target_include_directories(MathFunctions
-        INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
+        INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+        $<INSTALL_INTERFACE:include>
         )
 
 option(USE_MYMATH "Use tutorial provided math implementation" ON)
@@ -63,5 +65,9 @@ target_compile_definitions(MathFunctions PRIVATE "EXPORTING_MYMATH")
 
 
 
-install(TARGETS MathFunctions DESTINATION lib)
+install(TARGETS MathFunctions
+        DESTINATION lib
+        EXPORT MathFunctionsTargets
+        )
+
 install(FILES MathFunctions.h DESTINATION include)
