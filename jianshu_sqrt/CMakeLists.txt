@@ -7,19 +7,23 @@ project(Tutorial VERSION 2.2)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-option(USE_MYMATH "USE tutorial provided math implementation" OFF)
 
 #configure a header file to pass some of the CMake settings to the source code
 configure_file("${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
         "${PROJECT_BINARY_DIR}/TutorialConfig.h")
 
-if (USE_MYMATH)
-    # add the MathFunctions library
-    add_subdirectory(MathFunctions)
-    list(APPEND EXTRA_LIBS MathFunctions)
-    # add the target_include_directories in MathFunctions CMakeLists.txt, so no need writing the follow
-    # list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
-endif()
+# option(USE_MYMATH "USE tutorial provided math implementation" OFF)
+# if (USE_MYMATH)
+#     # add the MathFunctions library
+#     add_subdirectory(MathFunctions)
+#     list(APPEND EXTRA_LIBS MathFunctions)
+#     # add the target_include_directories in MathFunctions CMakeLists.txt, so no need writing the follow
+#     # list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
+# endif()
+
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+add_subdirectory(MathFunctions)
+list(APPEND EXTRA_LIBS MathFunctions)
 
 # add the executable
 add_executable(Tutorial tutorial.cxx)
