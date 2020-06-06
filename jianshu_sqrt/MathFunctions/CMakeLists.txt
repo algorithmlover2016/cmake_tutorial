@@ -40,13 +40,12 @@ if (USE_MYMATH)
                 "${CMAKE_CURRENT_BINARY_DIR}/Table.h"
                 )
     
+        # state that we depend on our binary dir to find Table.h
+        target_include_directories(SqrtLibrary PRIVATE
+                ${CMAKE_CURRENT_BINARY_DIR}
+                )
+
     endif()
-
-
-    # state that we depend on our binary dir to find Table.h
-    target_include_directories(SqrtLibrary PRIVATE
-            ${CMAKE_CURRENT_BINARY_DIR}
-            )
 
     # state that SqrtLibrary need PIC when the default is shared libraries
     set_target_properties(SqrtLibrary PROPERTIES
